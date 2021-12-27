@@ -1,0 +1,55 @@
+{% extends '../base.html' %}
+
+
+
+{% block containt %}
+
+<div class="container">
+    
+
+
+{{ Trace }}
+
+{{ token }}
+
+{% for i in result %}
+<div class="container" style="padding:40px;margin:40px;border:solid 2px skyblue;">
+
+{% for j in i.Segments %}
+ {% for x in j %}
+
+    <div class="text-center">
+        {{ x.Airline.AirlineName }} - Flight No. {{ x.Airline.FlightNumber }} <br>
+    </div>
+    <div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                FROM - <b style="color:green;">{{ x.Origin.Airport.AirportCode }}</b> <br>
+            </div>
+            <div class="col-md-4">
+                {{ x.Origin.DepTime }} <br>
+            </div>
+            <div class="col-md-4">
+                TO - <b style="color:red;">{{ x.Destination.Airport.AirportCode }}</b> <br>
+            </div>
+        </div>
+    
+    </div>
+     {% endfor %}
+{% endfor %}
+<div class="text-center">
+    FARE - <i style="color:grey;"> {{ i.Fare.OfferedFare }} </i> <br><br>
+    {{ i.ResultIndex }}
+</div>
+
+</div>
+
+
+
+
+{% endfor %}
+
+
+</div>
+
+{% endblock containt %}
